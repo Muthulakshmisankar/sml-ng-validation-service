@@ -1,20 +1,81 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="header">
+  <div class="header-content">
+    Simple Form
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+  <div class="row justify-content-center pt-4 mt-4 ">
 
+    <div class="col-12 col-md-12 pt-2">
+      <form [formGroup]="smlNgValidationForm">
+
+        <div class="row  justify-content-center">
+          <div class="col-12 col-md-10">
+            <div class="row">
+              <div class="col-12 col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Enter Name<sup>*</sup> </label>
+                  <input type="text" formControlName="name" (keypress)="validation.allowOnly('AlphaWithSpace',$event)"
+                    class="form-control">
+                  <div class="form-feedback"
+                    *ngIf="smlNgValidationFormControls?.name?.invalid && (smlNgValidationFormControls?.name.dirty || smlNgValidationFormControls?.name?.touched)">
+                    <p class=" v-error" *ngIf="smlNgValidationFormControls?.name?.errors?.required">
+                      Required </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Enter Alpha between g to o <sup>*</sup> </label>
+                  <input type="text" formControlName="telephone"
+                    (keypress)="validation.userDefinedRegex($event,'g' ,'o')" class="form-control">
+                    <div class="form-feedback"
+                    *ngIf="smlNgValidationFormControls?.telephone?.invalid && (smlNgValidationFormControls?.telephone.dirty || smlNgValidationFormControls?.telephone?.touched)">
+                    <p class=" v-error" *ngIf="smlNgValidationFormControls?.telephone?.errors?.required">
+                      Required </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Enter Email <sup>*</sup> </label>
+                  <input type="text" formControlName="email" class="form-control"
+                    (keypress)="validation.EmailId($event)">
+                    <div class="form-feedback"
+                    *ngIf="smlNgValidationFormControls?.email?.invalid && (smlNgValidationFormControls?.email.dirty || smlNgValidationFormControls?.email?.touched)">
+                    <p class=" v-error" *ngIf="smlNgValidationFormControls?.email?.errors?.required">
+                      Required </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Address <sup>*</sup> </label>
+                  <input type="text" formControlName="address" (keypress)="validation.anchorStringStartEnd($event)"
+                    class="form-control">
+                    <div class="form-feedback"
+                    *ngIf="smlNgValidationFormControls?.address?.invalid && (smlNgValidationFormControls?.address.dirty || smlNgValidationFormControls?.address?.touched)">
+                    <p class=" v-error" *ngIf="smlNgValidationFormControls?.address?.errors?.required">
+                      Required </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-2  pt-4 mt-1">
+            <div class="row">
+              <div class="col-12 col-md-3 ">
+                <div class="form-group">
+                  <button class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+</div>

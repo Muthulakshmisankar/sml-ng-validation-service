@@ -18,6 +18,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "sml-ng-validation-service": [
+        "dist/sml-ng-validation-service"
+      ],
+      "sml-ng-validation-service/*": [
+        "dist/sml-ng-validation-service/*"
+      ]
+    }
   }
 }

@@ -115,6 +115,41 @@
           }
         }
       }
+    },
+    "sml-ng-validation-service": {
+      "projectType": "library",
+      "root": "projects/sml-ng-validation-service",
+      "sourceRoot": "projects/sml-ng-validation-service/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/sml-ng-validation-service/tsconfig.lib.json",
+            "project": "projects/sml-ng-validation-service/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sml-ng-validation-service/src/test.ts",
+            "tsConfig": "projects/sml-ng-validation-service/tsconfig.spec.json",
+            "karmaConfig": "projects/sml-ng-validation-service/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sml-ng-validation-service/tsconfig.lib.json",
+              "projects/sml-ng-validation-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "sml-validation-service"
 }

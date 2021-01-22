@@ -1,0 +1,10 @@
+.v-error {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+  .v-required-sup {
+    font-size: 1.3rem;
+    color: red;
+    top: 0;
+  }
