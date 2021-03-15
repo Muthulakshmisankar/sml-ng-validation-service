@@ -1,10 +1,39 @@
 .v-error {
-    color: red;
-    font-size: 12px;
-    margin-bottom: 0;
-  }
-  .v-required-sup {
-    font-size: 1.3rem;
-    color: red;
-    top: 0;
-  }
+  color: red;
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.v-required-sup {
+  font-size: 1.3rem;
+  color: red;
+  top: 0;
+}
+.header {
+  display: flex;
+  background: #3f51b5;
+  color: #fff;
+  padding: 12px 12px;
+  font-weight: 900;
+  box-shadow: 1px 2px 4px #556474;
+}
+.header-content {
+  position: relative;
+  padding: 0 16px;
+}
+.submit-btn {
+  background: #3f51b5;
+}
+.submit-btn:hover {
+  background: #3f51b5c2;
+}
+.ng-vld-form-container {
+  height: 90vh;
+}
+.vertical-center {
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+}
+.form-label {
+  color: #09085a;
+}

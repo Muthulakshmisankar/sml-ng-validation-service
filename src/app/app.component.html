@@ -1,72 +1,135 @@
 <div class="header">
   <div class="header-content">
-    Simple Form
+    Validation Form
   </div>
 </div>
-<div class="container">
-  <div class="row justify-content-center pt-4 mt-4 ">
-
-    <div class="col-12 col-md-12 pt-2">
+<div class="container ng-vld-form-container">
+  <div class="row justify-content-center vertical-center">
+    <div class="col-12 col-md-8 pt-2 shadow">
       <form [formGroup]="smlNgValidationForm">
-
-        <div class="row  justify-content-center">
-          <div class="col-12 col-md-10">
-            <div class="row">
-              <div class="col-12 col-md-3">
-                <div class="form-group">
-                  <label class="form-label">Enter Name<sup>*</sup> </label>
-                  <input type="text" formControlName="name" (keypress)="validation.allowOnly('AlphaWithSpace',$event)"
-                    class="form-control">
-                  <div class="form-feedback"
-                    *ngIf="smlNgValidationFormControls?.name?.invalid && (smlNgValidationFormControls?.name.dirty || smlNgValidationFormControls?.name?.touched)">
-                    <p class=" v-error" *ngIf="smlNgValidationFormControls?.name?.errors?.required">
-                      Required </p>
-                  </div>
+        <div class="row p-4 justify-content-center">
+          <h4 style="color: #3f53b5;"> Validation Form</h4>
+        </div>
+        <div class="row p-2">
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label class="form-label"> <span *ngIf="selectedRegex"> Enter {{selectedRegex}}</span> <span
+                  *ngIf="!selectedRegex"> Select any regex and validate </span><sup class="v-required-sup">*</sup>
+              </label>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <select class="form-control" (change)="setRegex()" [(ngModel)]="selectedRegex"
+                    [ngModelOptions]="{standalone: true}">
+                    <option value="">Select Regex</option>
+                    <option *ngFor="let regex of regexPatternsArray" value="{{regex.value}}">{{regex.label}}</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <input type="text" formControlName="stringWithSpace"
+                    (keypress)="validation.allowOnly(selectedRegex,$event)"
+                    (paste)="validation.allowOnly(selectedRegex,$event)" class="form-control">
                 </div>
               </div>
-              <div class="col-12 col-md-3">
-                <div class="form-group">
-                  <label class="form-label">Enter Alpha between g to o <sup>*</sup> </label>
-                  <input type="text" formControlName="telephone"
-                    (keypress)="validation.userDefinedRegex($event,'g' ,'o')" class="form-control">
-                    <div class="form-feedback"
-                    *ngIf="smlNgValidationFormControls?.telephone?.invalid && (smlNgValidationFormControls?.telephone.dirty || smlNgValidationFormControls?.telephone?.touched)">
-                    <p class=" v-error" *ngIf="smlNgValidationFormControls?.telephone?.errors?.required">
-                      Required </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-3">
-                <div class="form-group">
-                  <label class="form-label">Enter Email <sup>*</sup> </label>
-                  <input type="text" formControlName="email" class="form-control"
-                    (keypress)="validation.EmailId($event)">
-                    <div class="form-feedback"
-                    *ngIf="smlNgValidationFormControls?.email?.invalid && (smlNgValidationFormControls?.email.dirty || smlNgValidationFormControls?.email?.touched)">
-                    <p class=" v-error" *ngIf="smlNgValidationFormControls?.email?.errors?.required">
-                      Required </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-3">
-                <div class="form-group">
-                  <label class="form-label">Address <sup>*</sup> </label>
-                  <input type="text" formControlName="address" (keypress)="validation.anchorStringStartEnd($event)"
-                    class="form-control">
-                    <div class="form-feedback"
-                    *ngIf="smlNgValidationFormControls?.address?.invalid && (smlNgValidationFormControls?.address.dirty || smlNgValidationFormControls?.address?.touched)">
-                    <p class=" v-error" *ngIf="smlNgValidationFormControls?.address?.errors?.required">
-                      Required </p>
-                  </div>
-                </div>
+              <div class="form-feedback"
+                *ngIf="smlNgValidationFormControls?.stringWithSpace?.invalid && (smlNgValidationFormControls?.stringWithSpace.dirty || smlNgValidationFormControls?.stringWithSpace?.touched)">
+                <p class=" v-error" *ngIf="smlNgValidationFormControls?.stringWithSpace?.errors?.required">
+                  Required </p>
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-2  pt-4 mt-1">
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label class="form-label">Enter any number 1 to 5 <sup class="v-required-sup">*</sup> </label>
+              <input type="text" formControlName="regexDefined"
+                (keypress)="validation.userDefinedRegex($event,'1','5', true); " class="form-control">
+              <div class="form-feedback"
+                *ngIf="smlNgValidationFormControls?.regexDefined?.invalid && (smlNgValidationFormControls?.regexDefined.dirty || smlNgValidationFormControls?.regexDefined?.touched)">
+                <p class=" v-error" *ngIf="smlNgValidationFormControls?.regexDefined?.errors?.required">
+                  Required </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row p-2">
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label class="form-label">Enter any string a to k <sup class="v-required-sup">*</sup> </label>
+              <input type="text" formControlName="StrregexDefined"
+                (keypress)="validation.userDefinedRegex($event,'a','k', true); " class="form-control">
+              <div class="form-feedback"
+                *ngIf="smlNgValidationFormControls?.StrregexDefined?.invalid && (smlNgValidationFormControls?.StrregexDefined.dirty || smlNgValidationFormControls?.StrregexDefined?.touched)">
+                <p class=" v-error" *ngIf="smlNgValidationFormControls?.StrregexDefined?.errors?.required">
+                  Required </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label class="form-label">Enter any 2 digit number(Length Validation) <sup class="v-required-sup">*</sup>
+              </label>
+              <input type="text" formControlName="lengthDefined" class="form-control"
+                (keypress)="validation.notAllowedMaxLength($event,2,3)">
+              <div class="form-feedback"
+                *ngIf="smlNgValidationFormControls?.lengthDefined?.invalid && (smlNgValidationFormControls?.lengthDefined.dirty || smlNgValidationFormControls?.lengthDefined?.touched)">
+                <p class=" v-error" *ngIf="smlNgValidationFormControls?.lengthDefined?.errors?.required">
+                  Required </p>
+                <p class=" v-error"
+                  *ngIf="!smlNgValidationFormControls?.lengthDefined?.errors?.required && smlNgValidationFormControls?.lengthDefined?.errors?.MinMax">
+                  {{smlNgValidationFormControls?.lengthDefined?.errors?.MinMax?.valid}} </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row p-2">
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label class="form-label">Enter Email <sup class="v-required-sup">*</sup> </label>
+              <input type="text" formControlName="email" class="form-control">
+              <div class="form-feedback"
+                *ngIf="smlNgValidationFormControls?.email?.invalid && (smlNgValidationFormControls?.email.dirty || smlNgValidationFormControls?.email?.touched)">
+                <p class=" v-error" *ngIf="smlNgValidationFormControls?.email?.errors?.required">
+                  Required </p>
+                <p class=" v-error"
+                  *ngIf="!smlNgValidationFormControls?.email?.errors?.required && smlNgValidationFormControls?.email?.errors?.isEmailValid">
+                  Please provide a valid email </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label class="form-label">Telephone <sup class="v-required-sup">*</sup> </label>
+              <input type="text" formControlName="telephone" class="form-control"
+                (keypress)="validation.MaskPhoneNumber($event)">
+              <div class="form-feedback"
+                *ngIf="smlNgValidationFormControls?.telephone?.invalid && (smlNgValidationFormControls?.telephone.dirty || smlNgValidationFormControls?.telephone?.touched)">
+                <p class=" v-error" *ngIf="smlNgValidationFormControls?.telephone?.errors?.required">
+                  Required </p>
+                <p class=" v-error"
+                  *ngIf="!smlNgValidationFormControls?.telephone?.errors?.required && smlNgValidationFormControls?.telephone?.errors?.isPhoneNumberValid">
+                  Please provide a valid telephone </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row p-2">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Enter Slice position </label>
+              <input type="text" formControlName="sliceNthElement" class="form-control"
+                (ngModelChange)="sliceArrayItems($event)">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Sliced Array Items </label><br>
+            {{slicedArray.toString()}}
+          </div>
+        </div>
+        <div class="row  justify-content-center">
+          <div class="col-12 col-md-2">
             <div class="row">
-              <div class="col-12 col-md-3 ">
+              <div class="col-12 col-md-3">
                 <div class="form-group">
-                  <button class="btn btn-primary">Submit</button>
+                  <button class="btn btn-primary submit-btn">Submit</button>
                 </div>
               </div>
             </div>
@@ -75,7 +138,4 @@
       </form>
     </div>
   </div>
-
-
-
 </div>
