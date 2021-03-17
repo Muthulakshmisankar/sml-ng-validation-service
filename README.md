@@ -1,5 +1,5 @@
-# validation 
-angular validation service
+#Validation 
+Angular validation service
 --------------------------------
 
 Overview
