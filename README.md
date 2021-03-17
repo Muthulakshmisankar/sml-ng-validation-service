@@ -8,39 +8,57 @@ A simple way to validate user input from the UI and display useful validation me
 
 Validations in sml-ng-validation-service
 ----------------------------------------
-1.EmailId Validations
-2.PhoneNumber Validations
-3.PhoneNumber Masking
-4.Min length & Max length
+1.EmailId Validations 
+
+2.PhoneNumber Validations 
+
+3.PhoneNumber Masking 
+
+4.Min length & Max length 
+
 5.User Defined Regex - For example, we need to allow only 1 to 5 digit only in the input box, other digits should not allow to type. So we have to use this userDefinedRegex.
-	Example : validation.userDefinedRegex($event,'1','5', true);
-6.notAllowedMaxLength - This method doesn't allowed to enter text not more than the defined length.
+	Example : validation.userDefinedRegex($event,'1','5', true); 
+
+6.notAllowedMaxLength - This method doesn't allowed to enter text not more than the defined length. 
+
+
 ----------------------------------------
 
 Installation
 ------------
+
 step1: npm i sml-ng-validation-service --save
+
 _____________________________________________________
 Step2: Import SmlNgValidationService into your app module
 
+
 import {  SmlNgValidationServiceModule } from 'sml-ng-validation-service';
+
 
 @NgModule({
   declarations: [
+
     AppComponent,
     SmlNgValidationServiceModule
+
   ],
   imports: [
+
     BrowserModule
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+
+  bootstrap: [ AppComponent ]
+
 })
 
 export class AppModule { }
 
 _____________________________________________________
 step3: Import SmlNgValidationService into your component.ts
+
 
 import { SmlNgValidationService } from 'sml-ng-validation-service';
 
@@ -50,6 +68,7 @@ constructor(
   ) { }
   
  ngOnInit() {
+
     this.smlNgValidationForm = this.fb.group({
       stringWithSpace: ['', Validators.required],
       regexDefined: ['', [Validators.required]],
@@ -59,6 +78,7 @@ constructor(
       telephone: ['', [Validators.required, this.validation.PhoneNumber()]],
       sliceNthElement: ['']
     });
+
   }
 ______________________________________________________
 
